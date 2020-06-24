@@ -26,6 +26,7 @@ option(AMR_WIND_ENABLE_CUDA "Enable CUDA" OFF)
 
 # Third party libraries
 option(AMR_WIND_ENABLE_MASA "Enable MASA library" OFF)
+option(AMR_WIND_ENABLE_ASCENT "Enable Ascent visualization  library" OFF)
 
 #Options for C++
 set(CMAKE_CXX_STANDARD 14)
@@ -42,6 +43,15 @@ endif()
 
 if(AMR_WIND_TEST_WITH_FCOMPARE)
   set(AMR_WIND_ENABLE_FCOMPARE ON)
+endif()
+
+
+if(AMR_WIND_ENABLE_ASCNET)
+  # needs to happen before amrex, since data conversions
+  # happen there
+  if (NOT ASCENT_DIR)
+    message(FATAL_ERROR "Ascent requies an explicit 'ASCENT_DIR'")
+  endif()
 endif()
 
 ########################### AMReX #####################################
@@ -124,7 +134,7 @@ if(AMR_WIND_ENABLE_DOCUMENTATION)
    add_subdirectory(docs)
 endif()
 
-#Define what we want to be installed during a make install 
+#Define what we want to be installed during a make install
 install(
   TARGETS ${amr_wind_exe_name} ${amr_wind_unit_test_exe_name}
   EXPORT ${PROJECT_NAME}Targets
