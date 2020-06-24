@@ -26,3 +26,8 @@ set(ENABLE_CUDA ${AMR_WIND_ENABLE_CUDA})
 set(ENABLE_ACC OFF)
 set(ENABLE_PLOTFILE_TOOLS ${AMR_WIND_ENABLE_FCOMPARE})
 set(ENABLE_FORTRAN ON)
+
+set(Conduit_DIR "/Users/larsen30/research/test_builds/devil_ray/ascent/uberenv_libs/spack/opt/spack/darwin-mojave-x86_64/clang-10.0.0-apple/conduit-master-ttlx44irajnabfuzcvwdxe4u6g4km4ki/lib/cmake")
+set(Ascent_DIR "/Users/larsen30/research/test_builds/devil_ray/ascent/install/lib/cmake")
+set(ENABLE_CONDUIT ON)
+set(ENABLE_ASCENT ON)
