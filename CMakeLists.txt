@@ -46,7 +46,7 @@ if(AMR_WIND_TEST_WITH_FCOMPARE)
 endif()
 
 
-if(AMR_WIND_ENABLE_ASCNET)
+if(AMR_WIND_ENABLE_ASCENT)
   # needs to happen before amrex, since data conversions
   # happen there
   if (NOT ASCENT_DIR)
