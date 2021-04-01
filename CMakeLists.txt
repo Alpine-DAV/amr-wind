@@ -71,6 +71,8 @@ if(AMR_WIND_ENABLE_ASCENT)
   if (NOT ASCENT_DIR)
     message(FATAL_ERROR "Ascent requies an explicit 'ASCENT_DIR'")
   endif()
+  set(Ascent_DIR ${ASCENT_DIR}/lib/cmake/ascent)
+  message(STATUS "USing Ascent_DIR ${Ascent_DIR}")
 endif()
 
 if (AMR_WIND_ENABLE_OPENFAST)
@@ -132,6 +134,10 @@ if(AMR_WIND_ENABLE_MASA)
   endif()
   target_compile_definitions(${amr_wind_lib_name} PUBLIC AMR_WIND_USE_MASA)
   target_link_libraries(${amr_wind_lib_name} PUBLIC MASA::MASA)
+endif()
+
+if(AMR_WIND_ENABLE_ASCENT)
+  target_compile_definitions(${amr_wind_lib_name} PRIVATE AMR_WIND_USE_ASCENT)
 endif()
 
 #Build amr-wind and link to amrex library

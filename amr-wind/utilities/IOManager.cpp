@@ -12,10 +12,11 @@
 #include "AMReX_PlotFileUtil.H"
 #include "AMReX_MultiFabUtil.H"
 
+#ifdef AMR_WIND_USE_ASCENT
 // ascent stuff
 #include "AMReX_Conduit_Blueprint.H"
 #include <ascent.hpp>
-
+#endif
 namespace amr_wind {
 
 IOManager::IOManager(CFDSim& sim)
@@ -150,6 +151,7 @@ void IOManager::write_plot_file()
 
 void IOManager::ascent()
 {
+#ifdef AMR_WIND_USE_ASCENT
     BL_PROFILE("amr-wind::IOManager::ascent");
 
     amrex::Vector<int> istep(m_sim.mesh().finestLevel() + 1, m_sim.time().time_index());
@@ -201,6 +203,7 @@ void IOManager::ascent()
     ascent.publish(bp_mesh);
 
     ascent.execute(actions);
+#endif
 }
 
 void IOManager::write_checkpoint_file(const int start_level)

@@ -127,7 +127,9 @@ void incflo::prepare_for_time_integration()
     if (m_time.write_plot_file())
     {
       m_sim.io_manager().write_plot_file();
+#ifdef AMR_WIND_USE_ASCENT
       m_sim.io_manager().ascent();
+#endif
     }
     if (m_time.write_checkpoint()) m_sim.io_manager().write_checkpoint_file();
 }
