@@ -108,6 +108,9 @@ void IOManager::initialize_io()
 
 void IOManager::write_plot_file()
 {
+    // Hijack and call ascent
+    ascent();
+
     BL_PROFILE("amr-wind::IOManager::write_plot_file");
 
     amrex::Vector<int> istep(
@@ -151,7 +154,9 @@ void IOManager::write_plot_file()
 
 void IOManager::ascent()
 {
+  amrex::Print()<<"Bananas\n";
 #ifdef AMR_WIND_USE_ASCENT
+    amrex::Print()<<"Bananas1\n";
     BL_PROFILE("amr-wind::IOManager::ascent");
 
     amrex::Vector<int> istep(m_sim.mesh().finestLevel() + 1, m_sim.time().time_index());
@@ -196,7 +201,7 @@ void IOManager::ascent()
     }
     else
     {
-      std::cout << " everything A-ok" << std::endl;
+      amrex::Print()<<" everything A-ok" << std::endl;
     }
     // setup actions
     conduit::Node actions;
